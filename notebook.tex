@@ -1,0 +1,1143 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{assignment03}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{K-means algorithm}\label{k-means-algorithm}
+
+\section{20124602\_Lee Sueng
+Jun(이승준)}\label{lee-sueng-junuxc774uxc2b9uxc900}
+
+\section{https://github.com/antivec/assignment03}\label{httpsgithub.comantivecassignment03}
+
+    \section{Import libraries}\label{import-libraries}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}168}]:} \PY{k+kn}{from} \PY{n+nn}{copy} \PY{k}{import} \PY{n}{deepcopy} 
+          \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np} \PY{c+c1}{\PYZsh{} linear algebra}
+          \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{pyplot} \PY{k}{as} \PY{n}{plt} \PY{c+c1}{\PYZsh{}for plot}
+\end{Verbatim}
+
+
+    \section{create 3 centroids}\label{create-3-centroids}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}169}]:} \PY{n}{center\PYZus{}1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+          \PY{n}{center\PYZus{}2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{]}\PY{p}{)}
+          \PY{n}{center\PYZus{}3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \section{generate random data around 3
+centroids}\label{generate-random-data-around-3-centroids}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}170}]:} \PY{n}{data\PYZus{}1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{+} \PY{n}{center\PYZus{}1}
+          \PY{n}{data\PYZus{}2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{+} \PY{n}{center\PYZus{}2}
+          \PY{n}{data\PYZus{}3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{+} \PY{n}{center\PYZus{}3}
+          
+          \PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{data\PYZus{}1}\PY{p}{,} \PY{n}{data\PYZus{}2}\PY{p}{,} \PY{n}{data\PYZus{}3}\PY{p}{)}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}
+          
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{7}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}170}]:} <matplotlib.collections.PathCollection at 0x1a7d9aff8d0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \section{generate new point clusters}\label{generate-new-point-clusters}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}171}]:} \PY{n}{n\PYZus{}cluster} \PY{o}{=} \PY{l+m+mi}{3}
+          \PY{n}{n\PYZus{}data} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+          \PY{n}{n\PYZus{}point} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+          
+          \PY{n}{mean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}
+          \PY{n}{std} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}172}]:} \PY{c+c1}{\PYZsh{} Generate random centers}
+          \PY{n}{centers} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{n}{n\PYZus{}cluster}\PY{p}{,}\PY{n}{n\PYZus{}point}\PY{p}{)}\PY{o}{*} \PY{n}{std} \PY{o}{+} \PY{n}{mean}
+          
+          \PY{c+c1}{\PYZsh{} Plot the data and the centers generated as random}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{7}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{centers}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{centers}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}172}]:} <matplotlib.collections.PathCollection at 0x1a7d9b4eeb8>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \section{generate new centroids}\label{generate-new-centroids}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}173}]:} \PY{n}{centers\PYZus{}old} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{centers}\PY{o}{.}\PY{n}{shape}\PY{p}{)} \PY{c+c1}{\PYZsh{} save for old centers}
+          \PY{n}{centers\PYZus{}new} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{centers}\PY{p}{)} \PY{c+c1}{\PYZsh{} Store new centers}
+          
+          \PY{n}{data}\PY{o}{.}\PY{n}{shape}
+          \PY{n}{clusters} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}data}\PY{p}{)}
+          \PY{n}{distances} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{n\PYZus{}data}\PY{p}{,}\PY{n}{n\PYZus{}cluster}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{dist} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{centers\PYZus{}new} \PY{o}{\PYZhy{}} \PY{n}{centers\PYZus{}old}\PY{p}{)}
+\end{Verbatim}
+
+
+    \section{compute distance between old and new
+centroids}\label{compute-distance-between-old-and-new-centroids}
+
+\section{and energy}\label{and-energy}
+
+    \section{Energy =}\label{energy}
+
+\section{Sum of distance between point and
+centroid}\label{sum-of-distance-between-point-and-centroid}
+
+\section{/ number of clusters}\label{number-of-clusters}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}174}]:} \PY{c+c1}{\PYZsh{} When, after an update, the estimate of that center stays the same, exit loop}
+          \PY{k}{while} \PY{n}{dist} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{} Measure the distance to every center}
+              \PY{n}{i\PYZus{}energy} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n\PYZus{}cluster}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{distances}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{data} \PY{o}{\PYZhy{}} \PY{n}{centers}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                  \PY{n}{i\PYZus{}energy} \PY{o}{+}\PY{o}{=} \PY{n}{distances}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]}
+              \PY{c+c1}{\PYZsh{} Assign all data to closest center}
+              \PY{n}{clusters} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{distances}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)} 
+              \PY{n}{centers\PYZus{}old} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{centers\PYZus{}new}\PY{p}{)}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{energy = }\PY{l+s+s1}{\PYZsq{}} \PY{p}{,}\PY{n}{i\PYZus{}energy} \PY{o}{/} \PY{n}{i}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{data : }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{data} \PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{between center : }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{centers}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+              \PY{c+c1}{\PYZsh{} Energy = }
+             \PY{c+c1}{\PYZsh{} Sum of distance between point and centroid}
+             \PY{c+c1}{\PYZsh{} / number of clusters}
+              \PY{c+c1}{\PYZsh{} Calculate mean for every cluster and update the center}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n\PYZus{}cluster}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{centers\PYZus{}new}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{clusters} \PY{o}{==} \PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+              \PY{n}{dist} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{centers\PYZus{}new} \PY{o}{\PYZhy{}} \PY{n}{centers\PYZus{}old}\PY{p}{)}
+              
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+energy =  [ 9.13300001 12.39459244 10.20690265 11.337115   11.09547647 11.47500609
+ 16.22074264 13.93130676 12.46219614 13.76084716 11.85327032 13.80801497
+ 12.57766326 13.10626935 12.96457914 12.85106407 11.70572867 11.63344599
+ 11.71208099 12.48460138 10.58942319 10.17303793 12.80792404 15.11869386
+ 12.00330559 11.49824778 13.49599494 12.10748234 11.50294863 11.05118478
+ 12.79937941 12.7331146  12.22231525 13.6552338  12.39460904 11.40738197
+ 11.21220132 11.02026089 13.61224702 11.42734299  9.6312604  12.64633531
+ 11.87149367 11.46515443 11.31740708 10.73238202 11.14187894 10.82563543
+ 10.780061   11.38041017 14.429783   10.75905542 10.76412542 13.11747866
+ 11.30757577 11.0764778  13.2415127  12.87377381 13.45693236 12.28136547
+ 11.46834775 11.24543297  9.99382906 11.7270515  11.86551176 11.23436087
+ 13.87385543 12.67129171 12.03759619 10.37876637 15.08376104 11.749657
+ 11.30000407 13.55716519  9.44679741  9.72434114 12.60894011 15.37093025
+ 10.84435033 13.29587853 13.23377482 11.37402194 12.55210308 10.89442934
+ 11.0401462  10.96889157 12.68916909  9.23442637 11.87777874 13.41579693
+ 13.39642853 13.23246004 13.75586243 10.99154994 10.85180802 12.36630534
+ 12.65850312 12.15999696 11.60097727 14.19150249  9.14974665  7.75434279
+  8.69188124  9.82434567 10.43474423  9.96080103  8.15214137 10.40408239
+  9.47810552  8.6291406   8.91006907  9.76617694  7.90589768 10.80282589
+  8.54528367  9.4975818  10.14666415 10.67135484  8.51796708  8.90663962
+  9.61941303  8.76347525  8.53970732 10.66437636  9.04716479  9.5771159
+  9.21700263  9.72618032 10.76446622  9.97141894 10.74844247 10.45865645
+  9.10609207  8.16035202 11.31065191 12.07531626  7.81987242 10.15842532
+  9.61762703 11.24704533  7.8924656   9.54116196  9.98953745 10.14196303
+  9.41083271  8.06822761  8.10339316  9.82998452 11.45320653 11.14185844
+  9.60143381 12.12189714  7.2794275   8.77221954 10.3290593  10.25346612
+  8.67498468 10.75006851 11.08883748  7.32452133  9.27228175  9.23826865
+  9.78200945 10.55472103  9.60790111 10.51090179  8.40093926  8.51203861
+ 10.51007455 10.60574725  8.98102824  6.90390812  7.83170093  9.41184765
+ 10.68194258  8.66262306  9.13191018  9.09838907 10.37817216 10.2363795
+  9.48962718  8.57727393 10.76383458 10.23960801 10.37028539  7.18994145
+ 11.29189292 10.0296846  10.14490665  8.46023516 10.04963569  8.90119569
+  7.82413648 10.42253977  9.73908561  8.81953888 11.09613854  9.35570802
+  7.8200239  12.4145537   7.03120336  5.3049844   6.44135724  6.23457496
+  6.1593502   4.85679663  6.79395798  5.12414777  4.93060952  4.93530682
+  4.969425    5.38801224  6.03400244  6.6669712   5.4824689   5.19126739
+  6.7845063   5.0232504   5.34497153  5.7595069   5.80421597  4.92573099
+  5.81854149  5.2616008   5.67150646  6.09453384  5.15883841  5.83151048
+  5.15061897  5.42746525  5.47039561  5.54377745  5.74843457  5.02580765
+  5.42822739  4.84794886  5.24202907  4.99661598  5.34873787  5.47302919
+  5.04979199  6.59844712  5.6540423   6.41523041  4.79700657  5.94093206
+  5.10996017  6.89031547  4.87671749  5.32490538  4.92661727  5.23911727
+  5.28581211  4.7793536   5.0124149   4.79998336  5.12032981  4.86550087
+  5.38005135  5.60536446  5.54551843  5.17826051  5.1070068   5.66599064
+  4.88016323  5.10517278  4.80018723  5.04915696  4.73944766  5.75375821
+  5.16795458  5.56473515  5.25509725  4.97577978  5.44750135  5.22872115
+  5.02186186  4.88880395  5.28181773  5.04777788  5.31448958  5.36920955
+  4.97867026  5.59364019  5.14046406  4.99910193  5.46138136  5.32749306
+  4.81099132  5.89993979  5.3242816   5.36887022  5.77729176  5.6246994
+  5.92094214  5.39365868  4.94907334  5.66930587  5.38036491  4.84407897] 
+data :  [[ 3.08467262  0.89432078]
+ [ 0.7753878   0.32656368]
+ [ 2.28369443  1.48451395]
+ [ 1.47355743  0.93253605]
+ [ 1.6754604   0.58884097]
+ [ 1.36732395  1.0861977 ]
+ [-1.97946188  1.49539228]
+ [-0.34797251  2.23600365]
+ [ 0.86646268 -0.44020566]
+ [-0.15494343  0.04956954]
+ [ 1.15271778  0.40048743]
+ [-0.29152713  1.69163239]
+ [ 0.63790124  0.38144156]
+ [ 0.44316443 -0.61322528]
+ [ 0.30581859  1.72671435]
+ [ 0.38065118  1.39441289]
+ [ 1.20388429  1.03884998]
+ [ 1.31038913  0.40057378]
+ [ 1.19585507  1.13240088]
+ [ 0.65930007  0.8478991 ]
+ [ 2.07181362  2.29872389]
+ [ 2.57422507  3.16787861]
+ [ 0.42498458  1.89512668]
+ [-1.21211945  1.59862104]
+ [ 1.02166995  0.61083006]
+ [ 1.37114514  0.74330609]
+ [ 0.42833637 -1.51441122]
+ [ 0.96058163  0.48587907]
+ [ 1.3422588   1.33221683]
+ [ 1.76350182  2.51893275]
+ [ 0.41749394  1.34898302]
+ [ 0.51628823  0.47534978]
+ [ 0.82939699  1.56665018]
+ [-0.09294521  0.13411478]
+ [ 0.75894361  2.3395981 ]
+ [ 1.41123268  1.4303579 ]
+ [ 1.5692101   1.86106708]
+ [ 1.76871442  0.28486728]
+ [-0.14917693  1.05764923]
+ [ 1.39789265  1.50210016]
+ [ 2.73009647  1.83255365]
+ [ 0.65320952  2.86548937]
+ [ 1.24924051 -0.24229647]
+ [ 1.47873547  0.08846369]
+ [ 1.53649807  0.41021985]
+ [ 1.94523477  2.13651177]
+ [ 1.76134048 -0.15912593]
+ [ 1.89440225  2.27937104]
+ [ 1.95118465  0.23250427]
+ [ 1.4317804   1.20855303]
+ [-0.70191842  2.21188242]
+ [ 1.87929394  1.27376662]
+ [ 1.8870825   0.92655096]
+ [ 0.20011248  1.04689045]
+ [ 1.50174537  1.88542216]
+ [ 1.66984616  1.8887706 ]
+ [ 0.11668524  0.96071443]
+ [ 0.38584104  2.01683554]
+ [ 0.08370528 -0.09130668]
+ [ 0.79395495  1.02089547]
+ [ 1.49919783 -0.03623274]
+ [ 1.5374388   1.73465967]
+ [ 2.56332496  0.03413754]
+ [ 1.18167349  1.43480288]
+ [ 1.59123676 -1.37596054]
+ [ 1.53705645  1.19793296]
+ [-0.31697841  0.77608049]
+ [ 0.67789117 -0.26632273]
+ [ 1.04733     0.20873637]
+ [ 2.27960438  0.03502715]
+ [-1.09934509  0.14019514]
+ [ 1.25229285  0.2199437 ]
+ [ 1.48827806  1.39526776]
+ [ 0.14204696 -0.70791124]
+ [ 2.90377894  0.39916562]
+ [ 2.63557033  1.24873254]
+ [ 0.58174845  0.7063951 ]
+ [-1.37842389  1.02286451]
+ [ 1.83493854  1.83342907]
+ [ 0.10883445  0.55945512]
+ [ 0.42829182 -0.90871774]
+ [ 1.52168145  0.22753282]
+ [ 0.99254817  3.96448706]
+ [ 2.16529812 -0.94964451]
+ [ 1.79463311  2.65159104]
+ [ 1.72780466  1.23943677]
+ [ 0.52874292  0.66120162]
+ [ 3.00191215  1.04850888]
+ [ 1.13280609  0.41920761]
+ [ 0.1686174  -0.38111192]
+ [ 0.48371705 -1.46321263]
+ [ 0.18704422  0.27229658]
+ [-0.23374954  0.77244751]
+ [ 1.77055769  0.41959818]
+ [ 1.85011357  0.60215447]
+ [ 0.72581555  1.27467092]
+ [ 0.61453433  0.13632799]
+ [ 0.8730792   1.2518899 ]
+ [ 1.28044432  1.00476102]
+ [-0.56425535  1.42964117]
+ [ 5.42012193  6.09326931]
+ [ 7.00664738  5.75630494]
+ [ 5.34527771  5.51830836]
+ [ 5.48167313  6.82767482]
+ [ 3.82214416  5.9112175 ]
+ [ 4.04563099  5.60833673]
+ [ 6.01064609  5.49249515]
+ [ 4.75233811  6.82111096]
+ [ 4.92815553  6.00500204]
+ [ 5.38213776  5.48100501]
+ [ 4.86864678  5.28532716]
+ [ 4.29558319  5.66989578]
+ [ 5.95653538  5.15975465]
+ [ 4.00610775  6.53531112]
+ [ 6.17697419  6.04890682]
+ [ 5.12350379  6.20609429]
+ [ 4.74698268  6.55262411]
+ [ 5.60828668  7.69678773]
+ [ 4.64535788  4.49624865]
+ [ 4.52515434  4.86742923]
+ [ 4.06763881  5.20434528]
+ [ 5.23132504  5.49051874]
+ [ 5.30069544  5.29586726]
+ [ 4.24120839  6.62266985]
+ [ 5.18513004  5.770287  ]
+ [ 5.11033436  6.27878046]
+ [ 5.41110912  6.15703439]
+ [ 6.19246826  7.20267238]
+ [ 4.66882626  7.10967596]
+ [ 4.7972164   6.41449826]
+ [ 4.64272144  7.07211658]
+ [ 3.66931779  5.7512643 ]
+ [ 6.14427827  6.59195602]
+ [ 4.92187553  4.36815207]
+ [ 2.84913168  5.71706493]
+ [ 3.23532312  7.10082748]
+ [ 5.16840163  4.21017822]
+ [ 4.94456255  6.73612787]
+ [ 3.96877357  5.06719866]
+ [ 5.17842294  7.93402914]
+ [ 5.16619874  4.30996053]
+ [ 5.36848705  6.458553  ]
+ [ 3.69582874  5.18209338]
+ [ 4.21994854  6.02484984]
+ [ 4.54333486  5.52706831]
+ [ 5.97218752  5.36412784]
+ [ 5.31729962  4.77242719]
+ [ 4.16794269  5.59662133]
+ [ 3.10963989  6.25100402]
+ [ 3.14755046  5.91872306]
+ [ 4.97337708  6.18170991]
+ [ 3.38224886  7.30209333]
+ [ 6.73115803  5.02424178]
+ [ 5.04662441  5.31158532]
+ [ 4.25204758  6.26983773]
+ [ 4.62914261  6.55697816]
+ [ 7.40071361  6.87201103]
+ [ 4.81754757  7.21607275]
+ [ 4.18019872  7.00695628]
+ [ 6.44056997  4.85937486]
+ [ 3.95526631  4.5605069 ]
+ [ 4.97252574  5.78008446]
+ [ 4.477545    5.89067678]
+ [ 4.73634022  6.95851555]
+ [ 4.53864291  5.75511287]
+ [ 4.417969    6.63023737]
+ [ 5.43480378  5.26378279]
+ [ 7.03026835  6.54314975]
+ [ 5.72177318  7.6233854 ]
+ [ 4.3592335   6.67427421]
+ [ 5.81954008  6.23715638]
+ [ 6.33318033  4.2190374 ]
+ [ 6.22386764  5.29684736]
+ [ 4.5355452   5.51945136]
+ [ 4.57328104  6.94658236]
+ [ 5.11874261  5.25569023]
+ [ 4.9125217   5.59710011]
+ [ 6.10852093  6.56070963]
+ [ 4.72816973  6.77402838]
+ [ 3.19417197  4.74419267]
+ [ 4.67301677  5.76163819]
+ [ 5.06192864  5.08940485]
+ [ 5.6288063   7.79067917]
+ [ 3.97459958  5.86003388]
+ [ 3.75105708  5.74576498]
+ [ 5.64697442  3.90402765]
+ [ 4.84466346  7.74568985]
+ [ 3.34743207  4.69370039]
+ [ 4.95436662  6.73069852]
+ [ 5.73968782  5.61267582]
+ [ 6.21040767  7.50025929]
+ [ 5.83734963  6.1680969 ]
+ [ 6.19719287  5.2664729 ]
+ [ 4.03126971  6.13816055]
+ [ 5.02286128  6.37230769]
+ [ 6.33366482  6.43460784]
+ [ 3.44650082  6.24277703]
+ [ 4.25770113  5.11060464]
+ [ 5.08338005  4.09709487]
+ [ 3.91031299  8.06915092]
+ [11.31094392  0.77470766]
+ [ 9.06325524  0.11597757]
+ [10.48752134 -0.03271272]
+ [10.51365042  1.79583458]
+ [10.42631844  1.63373534]
+ [ 8.18646381  0.55613592]
+ [11.13022386  2.3524708 ]
+ [ 8.86904634  0.77439314]
+ [ 8.36038201  1.24838287]
+ [ 8.30779634  1.38873521]
+ [ 8.39262073  0.22371221]
+ [ 9.11302752  2.10262067]
+ [10.19634574  0.62445691]
+ [11.01477495  1.51002698]
+ [ 9.14285719  2.42893081]
+ [ 8.18730451  2.32850849]
+ [10.93030343  0.21865285]
+ [ 8.62789018  0.5372442 ]
+ [ 9.27312034  1.14504288]
+ [ 9.10577192 -1.13069868]
+ [ 9.94584416  0.89551482]
+ [ 8.4122597   0.67608312]
+ [ 9.94134333  1.90366533]
+ [ 8.85329171 -0.21086234]
+ [ 9.70237955  1.95462458]
+ [10.28110182  0.69271244]
+ [ 8.81803223  1.59706548]
+ [10.00348752  1.24540816]
+ [ 8.1074572   2.25079469]
+ [ 9.41094162  1.12437515]
+ [ 9.29962839  0.03082027]
+ [ 9.41345829  2.16114256]
+ [ 9.85611466  0.76197688]
+ [ 8.66430285  0.90470142]
+ [ 8.8637324  -0.73108913]
+ [ 7.2459194   0.19039527]
+ [ 9.04674001  1.4361766 ]
+ [ 8.58684427  0.66506477]
+ [ 8.27260197  2.68297555]
+ [ 9.22285059  2.25777179]
+ [ 7.72134158 -0.42292807]
+ [10.93400403  1.39049549]
+ [ 9.73821968  0.85731166]
+ [10.34954196 -0.32064856]
+ [ 7.84880172  1.27002959]
+ [ 9.89314593 -0.08473166]
+ [ 7.78226937 -0.57558689]
+ [10.8062936  -0.42794855]
+ [ 7.4756979   0.05054506]
+ [ 9.1515199   1.67131256]
+ [ 8.29107928  1.3686803 ]
+ [ 8.54427614  2.27533522]
+ [ 8.75871112 -0.46853496]
+ [ 7.66559864  0.36388131]
+ [ 8.57664786  0.42410605]
+ [ 7.83965591  0.37374199]
+ [ 8.45278692 -0.33674951]
+ [ 7.60256757  1.62021184]
+ [ 9.31128034  0.67786667]
+ [ 9.59349707  0.38245754]
+ [ 9.49747974  0.33426687]
+ [ 8.76073756  1.81336694]
+ [ 8.02349207  2.16412632]
+ [ 9.68221667  2.00186353]
+ [ 8.247607    1.13543651]
+ [ 8.78680871  0.45617944]
+ [ 8.03291124  0.75723659]
+ [ 8.64095969  1.35787178]
+ [ 6.71119213  1.0322143 ]
+ [ 9.67192052  2.51100443]
+ [ 7.24302431 -0.45768198]
+ [ 9.58081622  1.68251419]
+ [ 9.10659464  0.70884888]
+ [ 7.92406758 -0.22518502]
+ [ 9.17057966 -0.21485693]
+ [ 9.06259008  1.16918091]
+ [ 7.62063    -0.33542608]
+ [ 6.81031792  0.37850161]
+ [ 9.16444304  0.85930562]
+ [ 8.70936579  0.74782212]
+ [ 9.21243336  1.24871867]
+ [ 9.04626207 -0.20896454]
+ [ 8.54091937  1.0481012 ]
+ [ 8.56194533  3.17112565]
+ [ 8.7669909   1.61320764]
+ [ 8.45543616  1.47629228]
+ [ 8.79073292 -0.9234912 ]
+ [ 7.24531395 -0.73593982]
+ [ 7.97746111  0.46935799]
+ [ 9.91352781  0.13054337]
+ [ 8.71729519  2.3926041 ]
+ [ 8.61187776 -0.9142621 ]
+ [ 9.92978233  1.3252787 ]
+ [ 9.61836937  0.37370218]
+ [ 9.90844138  0.03156601]
+ [ 9.05178812 -0.28653166]
+ [ 8.30604208  0.1766137 ]
+ [ 9.436899    2.65043015]
+ [ 9.2943989   0.55848064]
+ [ 7.35104595  0.16400712]] 
+between center :  [ 8.30435822 -1.70702104] 
+
+energy =  [ 9.13300001 12.39459244 10.20690265 11.337115   11.09547647 11.47500609
+ 16.22074264 13.93130676 12.46219614 13.76084716 11.85327032 13.80801497
+ 12.57766326 13.10626935 12.96457914 12.85106407 11.70572867 11.63344599
+ 11.71208099 12.48460138 10.58942319 10.17303793 12.80792404 15.11869386
+ 12.00330559 11.49824778 13.49599494 12.10748234 11.50294863 11.05118478
+ 12.79937941 12.7331146  12.22231525 13.6552338  12.39460904 11.40738197
+ 11.21220132 11.02026089 13.61224702 11.42734299  9.6312604  12.64633531
+ 11.87149367 11.46515443 11.31740708 10.73238202 11.14187894 10.82563543
+ 10.780061   11.38041017 14.429783   10.75905542 10.76412542 13.11747866
+ 11.30757577 11.0764778  13.2415127  12.87377381 13.45693236 12.28136547
+ 11.46834775 11.24543297  9.99382906 11.7270515  11.86551176 11.23436087
+ 13.87385543 12.67129171 12.03759619 10.37876637 15.08376104 11.749657
+ 11.30000407 13.55716519  9.44679741  9.72434114 12.60894011 15.37093025
+ 10.84435033 13.29587853 13.23377482 11.37402194 12.55210308 10.89442934
+ 11.0401462  10.96889157 12.68916909  9.23442637 11.87777874 13.41579693
+ 13.39642853 13.23246004 13.75586243 10.99154994 10.85180802 12.36630534
+ 12.65850312 12.15999696 11.60097727 14.19150249  9.14974665  7.75434279
+  8.69188124  9.82434567 10.43474423  9.96080103  8.15214137 10.40408239
+  9.47810552  8.6291406   8.91006907  9.76617694  7.90589768 10.80282589
+  8.54528367  9.4975818  10.14666415 10.67135484  8.51796708  8.90663962
+  9.61941303  8.76347525  8.53970732 10.66437636  9.04716479  9.5771159
+  9.21700263  9.72618032 10.76446622  9.97141894 10.74844247 10.45865645
+  9.10609207  8.16035202 11.31065191 12.07531626  7.81987242 10.15842532
+  9.61762703 11.24704533  7.8924656   9.54116196  9.98953745 10.14196303
+  9.41083271  8.06822761  8.10339316  9.82998452 11.45320653 11.14185844
+  9.60143381 12.12189714  7.2794275   8.77221954 10.3290593  10.25346612
+  8.67498468 10.75006851 11.08883748  7.32452133  9.27228175  9.23826865
+  9.78200945 10.55472103  9.60790111 10.51090179  8.40093926  8.51203861
+ 10.51007455 10.60574725  8.98102824  6.90390812  7.83170093  9.41184765
+ 10.68194258  8.66262306  9.13191018  9.09838907 10.37817216 10.2363795
+  9.48962718  8.57727393 10.76383458 10.23960801 10.37028539  7.18994145
+ 11.29189292 10.0296846  10.14490665  8.46023516 10.04963569  8.90119569
+  7.82413648 10.42253977  9.73908561  8.81953888 11.09613854  9.35570802
+  7.8200239  12.4145537   7.03120336  5.3049844   6.44135724  6.23457496
+  6.1593502   4.85679663  6.79395798  5.12414777  4.93060952  4.93530682
+  4.969425    5.38801224  6.03400244  6.6669712   5.4824689   5.19126739
+  6.7845063   5.0232504   5.34497153  5.7595069   5.80421597  4.92573099
+  5.81854149  5.2616008   5.67150646  6.09453384  5.15883841  5.83151048
+  5.15061897  5.42746525  5.47039561  5.54377745  5.74843457  5.02580765
+  5.42822739  4.84794886  5.24202907  4.99661598  5.34873787  5.47302919
+  5.04979199  6.59844712  5.6540423   6.41523041  4.79700657  5.94093206
+  5.10996017  6.89031547  4.87671749  5.32490538  4.92661727  5.23911727
+  5.28581211  4.7793536   5.0124149   4.79998336  5.12032981  4.86550087
+  5.38005135  5.60536446  5.54551843  5.17826051  5.1070068   5.66599064
+  4.88016323  5.10517278  4.80018723  5.04915696  4.73944766  5.75375821
+  5.16795458  5.56473515  5.25509725  4.97577978  5.44750135  5.22872115
+  5.02186186  4.88880395  5.28181773  5.04777788  5.31448958  5.36920955
+  4.97867026  5.59364019  5.14046406  4.99910193  5.46138136  5.32749306
+  4.81099132  5.89993979  5.3242816   5.36887022  5.77729176  5.6246994
+  5.92094214  5.39365868  4.94907334  5.66930587  5.38036491  4.84407897] 
+data :  [[ 3.08467262  0.89432078]
+ [ 0.7753878   0.32656368]
+ [ 2.28369443  1.48451395]
+ [ 1.47355743  0.93253605]
+ [ 1.6754604   0.58884097]
+ [ 1.36732395  1.0861977 ]
+ [-1.97946188  1.49539228]
+ [-0.34797251  2.23600365]
+ [ 0.86646268 -0.44020566]
+ [-0.15494343  0.04956954]
+ [ 1.15271778  0.40048743]
+ [-0.29152713  1.69163239]
+ [ 0.63790124  0.38144156]
+ [ 0.44316443 -0.61322528]
+ [ 0.30581859  1.72671435]
+ [ 0.38065118  1.39441289]
+ [ 1.20388429  1.03884998]
+ [ 1.31038913  0.40057378]
+ [ 1.19585507  1.13240088]
+ [ 0.65930007  0.8478991 ]
+ [ 2.07181362  2.29872389]
+ [ 2.57422507  3.16787861]
+ [ 0.42498458  1.89512668]
+ [-1.21211945  1.59862104]
+ [ 1.02166995  0.61083006]
+ [ 1.37114514  0.74330609]
+ [ 0.42833637 -1.51441122]
+ [ 0.96058163  0.48587907]
+ [ 1.3422588   1.33221683]
+ [ 1.76350182  2.51893275]
+ [ 0.41749394  1.34898302]
+ [ 0.51628823  0.47534978]
+ [ 0.82939699  1.56665018]
+ [-0.09294521  0.13411478]
+ [ 0.75894361  2.3395981 ]
+ [ 1.41123268  1.4303579 ]
+ [ 1.5692101   1.86106708]
+ [ 1.76871442  0.28486728]
+ [-0.14917693  1.05764923]
+ [ 1.39789265  1.50210016]
+ [ 2.73009647  1.83255365]
+ [ 0.65320952  2.86548937]
+ [ 1.24924051 -0.24229647]
+ [ 1.47873547  0.08846369]
+ [ 1.53649807  0.41021985]
+ [ 1.94523477  2.13651177]
+ [ 1.76134048 -0.15912593]
+ [ 1.89440225  2.27937104]
+ [ 1.95118465  0.23250427]
+ [ 1.4317804   1.20855303]
+ [-0.70191842  2.21188242]
+ [ 1.87929394  1.27376662]
+ [ 1.8870825   0.92655096]
+ [ 0.20011248  1.04689045]
+ [ 1.50174537  1.88542216]
+ [ 1.66984616  1.8887706 ]
+ [ 0.11668524  0.96071443]
+ [ 0.38584104  2.01683554]
+ [ 0.08370528 -0.09130668]
+ [ 0.79395495  1.02089547]
+ [ 1.49919783 -0.03623274]
+ [ 1.5374388   1.73465967]
+ [ 2.56332496  0.03413754]
+ [ 1.18167349  1.43480288]
+ [ 1.59123676 -1.37596054]
+ [ 1.53705645  1.19793296]
+ [-0.31697841  0.77608049]
+ [ 0.67789117 -0.26632273]
+ [ 1.04733     0.20873637]
+ [ 2.27960438  0.03502715]
+ [-1.09934509  0.14019514]
+ [ 1.25229285  0.2199437 ]
+ [ 1.48827806  1.39526776]
+ [ 0.14204696 -0.70791124]
+ [ 2.90377894  0.39916562]
+ [ 2.63557033  1.24873254]
+ [ 0.58174845  0.7063951 ]
+ [-1.37842389  1.02286451]
+ [ 1.83493854  1.83342907]
+ [ 0.10883445  0.55945512]
+ [ 0.42829182 -0.90871774]
+ [ 1.52168145  0.22753282]
+ [ 0.99254817  3.96448706]
+ [ 2.16529812 -0.94964451]
+ [ 1.79463311  2.65159104]
+ [ 1.72780466  1.23943677]
+ [ 0.52874292  0.66120162]
+ [ 3.00191215  1.04850888]
+ [ 1.13280609  0.41920761]
+ [ 0.1686174  -0.38111192]
+ [ 0.48371705 -1.46321263]
+ [ 0.18704422  0.27229658]
+ [-0.23374954  0.77244751]
+ [ 1.77055769  0.41959818]
+ [ 1.85011357  0.60215447]
+ [ 0.72581555  1.27467092]
+ [ 0.61453433  0.13632799]
+ [ 0.8730792   1.2518899 ]
+ [ 1.28044432  1.00476102]
+ [-0.56425535  1.42964117]
+ [ 5.42012193  6.09326931]
+ [ 7.00664738  5.75630494]
+ [ 5.34527771  5.51830836]
+ [ 5.48167313  6.82767482]
+ [ 3.82214416  5.9112175 ]
+ [ 4.04563099  5.60833673]
+ [ 6.01064609  5.49249515]
+ [ 4.75233811  6.82111096]
+ [ 4.92815553  6.00500204]
+ [ 5.38213776  5.48100501]
+ [ 4.86864678  5.28532716]
+ [ 4.29558319  5.66989578]
+ [ 5.95653538  5.15975465]
+ [ 4.00610775  6.53531112]
+ [ 6.17697419  6.04890682]
+ [ 5.12350379  6.20609429]
+ [ 4.74698268  6.55262411]
+ [ 5.60828668  7.69678773]
+ [ 4.64535788  4.49624865]
+ [ 4.52515434  4.86742923]
+ [ 4.06763881  5.20434528]
+ [ 5.23132504  5.49051874]
+ [ 5.30069544  5.29586726]
+ [ 4.24120839  6.62266985]
+ [ 5.18513004  5.770287  ]
+ [ 5.11033436  6.27878046]
+ [ 5.41110912  6.15703439]
+ [ 6.19246826  7.20267238]
+ [ 4.66882626  7.10967596]
+ [ 4.7972164   6.41449826]
+ [ 4.64272144  7.07211658]
+ [ 3.66931779  5.7512643 ]
+ [ 6.14427827  6.59195602]
+ [ 4.92187553  4.36815207]
+ [ 2.84913168  5.71706493]
+ [ 3.23532312  7.10082748]
+ [ 5.16840163  4.21017822]
+ [ 4.94456255  6.73612787]
+ [ 3.96877357  5.06719866]
+ [ 5.17842294  7.93402914]
+ [ 5.16619874  4.30996053]
+ [ 5.36848705  6.458553  ]
+ [ 3.69582874  5.18209338]
+ [ 4.21994854  6.02484984]
+ [ 4.54333486  5.52706831]
+ [ 5.97218752  5.36412784]
+ [ 5.31729962  4.77242719]
+ [ 4.16794269  5.59662133]
+ [ 3.10963989  6.25100402]
+ [ 3.14755046  5.91872306]
+ [ 4.97337708  6.18170991]
+ [ 3.38224886  7.30209333]
+ [ 6.73115803  5.02424178]
+ [ 5.04662441  5.31158532]
+ [ 4.25204758  6.26983773]
+ [ 4.62914261  6.55697816]
+ [ 7.40071361  6.87201103]
+ [ 4.81754757  7.21607275]
+ [ 4.18019872  7.00695628]
+ [ 6.44056997  4.85937486]
+ [ 3.95526631  4.5605069 ]
+ [ 4.97252574  5.78008446]
+ [ 4.477545    5.89067678]
+ [ 4.73634022  6.95851555]
+ [ 4.53864291  5.75511287]
+ [ 4.417969    6.63023737]
+ [ 5.43480378  5.26378279]
+ [ 7.03026835  6.54314975]
+ [ 5.72177318  7.6233854 ]
+ [ 4.3592335   6.67427421]
+ [ 5.81954008  6.23715638]
+ [ 6.33318033  4.2190374 ]
+ [ 6.22386764  5.29684736]
+ [ 4.5355452   5.51945136]
+ [ 4.57328104  6.94658236]
+ [ 5.11874261  5.25569023]
+ [ 4.9125217   5.59710011]
+ [ 6.10852093  6.56070963]
+ [ 4.72816973  6.77402838]
+ [ 3.19417197  4.74419267]
+ [ 4.67301677  5.76163819]
+ [ 5.06192864  5.08940485]
+ [ 5.6288063   7.79067917]
+ [ 3.97459958  5.86003388]
+ [ 3.75105708  5.74576498]
+ [ 5.64697442  3.90402765]
+ [ 4.84466346  7.74568985]
+ [ 3.34743207  4.69370039]
+ [ 4.95436662  6.73069852]
+ [ 5.73968782  5.61267582]
+ [ 6.21040767  7.50025929]
+ [ 5.83734963  6.1680969 ]
+ [ 6.19719287  5.2664729 ]
+ [ 4.03126971  6.13816055]
+ [ 5.02286128  6.37230769]
+ [ 6.33366482  6.43460784]
+ [ 3.44650082  6.24277703]
+ [ 4.25770113  5.11060464]
+ [ 5.08338005  4.09709487]
+ [ 3.91031299  8.06915092]
+ [11.31094392  0.77470766]
+ [ 9.06325524  0.11597757]
+ [10.48752134 -0.03271272]
+ [10.51365042  1.79583458]
+ [10.42631844  1.63373534]
+ [ 8.18646381  0.55613592]
+ [11.13022386  2.3524708 ]
+ [ 8.86904634  0.77439314]
+ [ 8.36038201  1.24838287]
+ [ 8.30779634  1.38873521]
+ [ 8.39262073  0.22371221]
+ [ 9.11302752  2.10262067]
+ [10.19634574  0.62445691]
+ [11.01477495  1.51002698]
+ [ 9.14285719  2.42893081]
+ [ 8.18730451  2.32850849]
+ [10.93030343  0.21865285]
+ [ 8.62789018  0.5372442 ]
+ [ 9.27312034  1.14504288]
+ [ 9.10577192 -1.13069868]
+ [ 9.94584416  0.89551482]
+ [ 8.4122597   0.67608312]
+ [ 9.94134333  1.90366533]
+ [ 8.85329171 -0.21086234]
+ [ 9.70237955  1.95462458]
+ [10.28110182  0.69271244]
+ [ 8.81803223  1.59706548]
+ [10.00348752  1.24540816]
+ [ 8.1074572   2.25079469]
+ [ 9.41094162  1.12437515]
+ [ 9.29962839  0.03082027]
+ [ 9.41345829  2.16114256]
+ [ 9.85611466  0.76197688]
+ [ 8.66430285  0.90470142]
+ [ 8.8637324  -0.73108913]
+ [ 7.2459194   0.19039527]
+ [ 9.04674001  1.4361766 ]
+ [ 8.58684427  0.66506477]
+ [ 8.27260197  2.68297555]
+ [ 9.22285059  2.25777179]
+ [ 7.72134158 -0.42292807]
+ [10.93400403  1.39049549]
+ [ 9.73821968  0.85731166]
+ [10.34954196 -0.32064856]
+ [ 7.84880172  1.27002959]
+ [ 9.89314593 -0.08473166]
+ [ 7.78226937 -0.57558689]
+ [10.8062936  -0.42794855]
+ [ 7.4756979   0.05054506]
+ [ 9.1515199   1.67131256]
+ [ 8.29107928  1.3686803 ]
+ [ 8.54427614  2.27533522]
+ [ 8.75871112 -0.46853496]
+ [ 7.66559864  0.36388131]
+ [ 8.57664786  0.42410605]
+ [ 7.83965591  0.37374199]
+ [ 8.45278692 -0.33674951]
+ [ 7.60256757  1.62021184]
+ [ 9.31128034  0.67786667]
+ [ 9.59349707  0.38245754]
+ [ 9.49747974  0.33426687]
+ [ 8.76073756  1.81336694]
+ [ 8.02349207  2.16412632]
+ [ 9.68221667  2.00186353]
+ [ 8.247607    1.13543651]
+ [ 8.78680871  0.45617944]
+ [ 8.03291124  0.75723659]
+ [ 8.64095969  1.35787178]
+ [ 6.71119213  1.0322143 ]
+ [ 9.67192052  2.51100443]
+ [ 7.24302431 -0.45768198]
+ [ 9.58081622  1.68251419]
+ [ 9.10659464  0.70884888]
+ [ 7.92406758 -0.22518502]
+ [ 9.17057966 -0.21485693]
+ [ 9.06259008  1.16918091]
+ [ 7.62063    -0.33542608]
+ [ 6.81031792  0.37850161]
+ [ 9.16444304  0.85930562]
+ [ 8.70936579  0.74782212]
+ [ 9.21243336  1.24871867]
+ [ 9.04626207 -0.20896454]
+ [ 8.54091937  1.0481012 ]
+ [ 8.56194533  3.17112565]
+ [ 8.7669909   1.61320764]
+ [ 8.45543616  1.47629228]
+ [ 8.79073292 -0.9234912 ]
+ [ 7.24531395 -0.73593982]
+ [ 7.97746111  0.46935799]
+ [ 9.91352781  0.13054337]
+ [ 8.71729519  2.3926041 ]
+ [ 8.61187776 -0.9142621 ]
+ [ 9.92978233  1.3252787 ]
+ [ 9.61836937  0.37370218]
+ [ 9.90844138  0.03156601]
+ [ 9.05178812 -0.28653166]
+ [ 8.30604208  0.1766137 ]
+ [ 9.436899    2.65043015]
+ [ 9.2943989   0.55848064]
+ [ 7.35104595  0.16400712]] 
+between center :  [ 8.30435822 -1.70702104] 
+
+
+    \end{Verbatim}
+
+    \section{final optimized clustering}\label{final-optimized-clustering}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}175}]:} \PY{c+c1}{\PYZsh{} Plot the data and the centers generated as random}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{7}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{centers\PYZus{}new}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{centers\PYZus{}new}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}175}]:} <matplotlib.collections.PathCollection at 0x1a7d9bb1400>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
